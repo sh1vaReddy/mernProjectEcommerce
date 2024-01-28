@@ -43,6 +43,7 @@ import NotFound from "./component/layout/Not Found/NotFound";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+  axios.defaults.baseURL = "https://e-commerce-backend-y8st.onrender.com";
 
   const [stripeApiKey, setStripeApiKey] = useState("");
 
@@ -64,12 +65,9 @@ function App() {
     getStripeApiKey();
   }, []);
 
- 
-
   return (
     <Router>
-     <Header/>
-    
+      <Header />
 
       {isAuthenticated && <UserOptions user={user} />}
 
@@ -79,8 +77,6 @@ function App() {
         </Elements>
       )}
 
-
-
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/product/:id" component={ProductDetails} />
@@ -88,10 +84,6 @@ function App() {
         <Route path="/products/:keyword" component={Products} />
 
         <Route exact path="/search" component={Search} />
-
-    
-
-
 
         <ProtectedRoute exact path="/account" component={Profile} />
 
